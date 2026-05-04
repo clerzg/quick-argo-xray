@@ -15,7 +15,7 @@
 在终端中执行以下命令：
 
 ```bash
-bash <(curl -fsSL https://github.com/clerzg/vpstool/raw/refs/heads/main/quick-argo-xray/quick-argo-xray.sh)
+bash <(curl -fsSL https://github.com/clerzg/quick-argo-xray/raw/refs/heads/main/quick-argo-xray.sh)
 ```
 
 ## 📋 运行逻辑
