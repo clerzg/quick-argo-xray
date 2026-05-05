@@ -50,16 +50,23 @@ while true; do
     elif [ -n "$argo" ]; then
         rm -rf argo.log
         echo -e "\n\n🚀 部署成功！"
-        L_TLS="vless://$uuid@cdns.doon.eu.org:443?encryption=none&security=tls&type=ws&host=$argo&path=%2F$urlpath#${isp}_TLS"
-        L_NTLS="vless://$uuid@cdns.doon.eu.org:80?encryption=none&security=none&type=ws&host=$argo&path=%2F$urlpath#${isp}_NoTLS"
+        # 1. 生成不经过优选的原链接 (使用 Argo 原始域名)
+        L_ORIGIN="vless://$uuid@$argo:443?encryption=none&security=tls&type=ws&host=$argo&path=%2F$urlpath#${isp}"
+
+        # 2. 生成优选订阅链接 (按照你提供的格式拼接)
+        # 注意：path 部分需要进行 URL 编码，这里的 %2F 对应 /
+        SUB_URL="https://sub.xinyitang.dpdns.org/sub?uuid=$uuid&encryption=none&security=tls&sni=$argo&fp=chrome&insecure=0&allowInsecure=0&type=ws&host=$argo&path=%2F$urlpath"
+
+        echo -e "----------------------------------------------------------------"
+        echo -e "🔗 Argo 原链接 (不带优选):"
+        echo -e "$L_ORIGIN\n"
+        echo -e "🛠️ 优选订阅链接 (可以直接导入):"
+        echo -e "$SUB_URL"
+        echo -e "----------------------------------------------------------------"
         
-        echo -e "----------------------------------------"
-        echo -e "TLS 链接 (推荐):\n$L_TLS\n"
-        echo -e "非 TLS 链接:\n$L_NTLS"
-        echo -e "----------------------------------------"
+        # 保存到本地文件
+        echo -e "Origin_Link:\n$L_ORIGIN\n\nSub_Link:\n$SUB_URL" > v2ray.txt
         echo -e "配置已保存至: v2ray.txt"
-        
-        echo -e "TLS:\n$L_TLS\n\nNoTLS:\n$L_NTLS" > v2ray.txt
         break
     fi
     sleep 1
