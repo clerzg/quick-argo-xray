@@ -50,11 +50,8 @@ while true; do
     elif [ -n "$argo" ]; then
         rm -rf argo.log
         echo -e "\n\n🚀 部署成功！"
-        # 1. 生成不经过优选的原链接 (使用 Argo 原始域名)
         L_ORIGIN="vless://$uuid@$argo:443?encryption=none&security=tls&type=ws&host=$argo&path=%2F$urlpath#${isp}"
 
-        # 2. 生成优选订阅链接 (按照你提供的格式拼接)
-        # 注意：path 部分需要进行 URL 编码，这里的 %2F 对应 /
         SUB_URL="https://sub.xinyitang.dpdns.org/sub?uuid=$uuid&encryption=none&security=tls&sni=$argo&fp=chrome&insecure=0&allowInsecure=0&type=ws&host=$argo&path=%2F$urlpath"
 
         echo -e "----------------------------------------------------------------"
