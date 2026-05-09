@@ -1,7 +1,6 @@
 #!/bin/bash
 
 function quicktunnel(){
-echo "正在初始化环境..."
 cd ~
 rm -rf xray cloudflared-linux xray.zip argo.log v2ray.txt
 case "$(uname -m)" in
@@ -10,7 +9,6 @@ case "$(uname -m)" in
     * ) echo "错误：不支持的架构"; exit 1 ;;
 esac
 
-echo "正在全速下载核心组件 (Xray & Cloudflared)..."
 mkdir -p xray
 curl -L -o xray.zip https://github.com/XTLS/Xray-core/releases/latest/download/${ARCH_XRAY}
 unzip -j xray.zip xray -d xray && rm -f xray.zip
