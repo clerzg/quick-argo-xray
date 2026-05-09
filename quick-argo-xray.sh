@@ -10,12 +10,6 @@ case "$(uname -m)" in
     * ) echo "错误：不支持的架构"; exit 1 ;;
 esac
 
-echo "正在获取网络信息..."
-trace_raw=$(curl -s --connect-timeout 5 https://www.cloudflare.com/cdn-cgi/trace)
-loc=$(echo "$trace_raw" | grep "loc=" | cut -d= -f2)
-ip_addr=$(echo "$trace_raw" | grep "ip=" | cut -d= -f2)
-isp="${loc:-Argo}-${ip_addr:-Node}"
-
 echo "正在全速下载核心组件 (Xray & Cloudflared)..."
 mkdir -p xray
 curl -L -o xray.zip https://github.com/XTLS/Xray-core/releases/latest/download/${ARCH_XRAY}
@@ -50,19 +44,15 @@ while true; do
     elif [ -n "$argo" ]; then
         rm -rf argo.log
         echo -e "\n\n🚀 部署成功！"
-        L_ORIGIN="vless://$uuid@$argo:443?encryption=none&security=tls&type=ws&host=$argo&path=%2F$urlpath#${isp}"
 
         SUB_URL="https://sub.xinyitang.dpdns.org/sub?uuid=$uuid&encryption=none&security=tls&sni=$argo&fp=chrome&insecure=0&allowInsecure=0&type=ws&host=$argo&path=%2F$urlpath"
 
         echo -e "----------------------------------------------------------------"
-        echo -e "🔗 Argo 原链接 (不带优选):"
-        echo -e "$L_ORIGIN\n"
-        echo -e "🛠️ 优选订阅链接 (可以直接导入):"
+        echo -e "🛠️ 优选订阅链接:"
         echo -e "$SUB_URL"
         echo -e "----------------------------------------------------------------"
         
-        # 保存到本地文件
-        echo -e "Origin_Link:\n$L_ORIGIN\n\nSub_Link:\n$SUB_URL" > v2ray.txt
+        echo -e "Sub_Link:\n$SUB_URL" > v2ray.txt
         echo -e "配置已保存至: v2ray.txt"
         break
     fi
