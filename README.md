@@ -5,8 +5,6 @@
 ## 🌟 项目亮点
 
 *   **内存压榨**：深度优化 Xray 配置，关闭所有非必要日志，实测在 64MB RAM 环境下长期稳定运行。
-*   **智能输出**：
-    *   生成基于 Argo 原始域名的保底链接。
     *   自动生成适配优选订阅器的链接，直接获取高速体验。
 
 ## 🚀 快速开始
@@ -15,6 +13,13 @@
 
 ```bash
 bash <(curl -fsSL https://github.com/clerzg/quick-argo-xray/raw/refs/heads/main/quick-argo-xray.sh)
+```
+
+
+Docker Alpine 启动命令
+
+```bash
+sh -c 'apk add --no-cache bash curl openssl && curl -fSSL https://github.com/clerzg/quick-argo-xray/raw/refs/heads/main/quick-argo-xray.sh -o setup.sh && chmod +x setup.sh && ./setup.sh && tail -f /dev/null'
 ```
 
 ## 📂 目录结构
@@ -29,10 +34,7 @@ bash <(curl -fsSL https://github.com/clerzg/quick-argo-xray/raw/refs/heads/main/
 
 ```text
 ----------------------------------------------------------------
-🔗 Argo 原链接 (不带优选):
-vless://uuid@your-argo-domain.trycloudflare.com:443?...
-
-🛠️ 优选订阅链接 (可以直接导入):
+🛠️ 优选订阅链接:
 https://sub.xxx/sub?uuid=...&host=your-argo-domain...
 ----------------------------------------------------------------
 ```
