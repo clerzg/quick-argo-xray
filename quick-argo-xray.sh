@@ -23,7 +23,7 @@ unzip -j xray.zip xray -d xray && rm -f xray.zip
 curl -L -o cloudflared-linux https://github.com/cloudflare/cloudflared/releases/latest/download/${ARCH_CF}
 chmod +x cloudflared-linux xray/xray
 
-uuid=$(cat /dev/urandom | tr -dc 'a-f0-9' | fold -w 32 | head -n 1 | sed -e 's/^\(.\{8\}\)\(.\{4\}\)\(.\{4\}\)\(.\{4\}\)\(.\{12\}\)$/\1-\2-\3-\4-\5/')
+uuid=$(./xray/xray uuid)
 urlpath=$(echo $uuid | awk -F- '{print $1}')
 port=$[$RANDOM+10000]
 
