@@ -1,10 +1,10 @@
 # Quick-Argo-Xray
 
-一个极致轻量化的全自动网络穿透部署脚本。专为 **64MB** 内存的廉价 VPS（支持 Alpine Linux, Debian, Ubuntu）量身定制。通过 Xray-core 与 Cloudflare Argo Tunnel 的组合，实现无公网 IP、无域名环境下的稳定接入。
+一个极致轻量化的全自动网络穿透部署脚本。专为 **64MB** 内存的廉价 VPS（支持 Alpine Linux, Debian, Ubuntu）量身定制。通过 Xray-core 与 Cloudflare Argo Tunnel 的组合，实现无公网 IP、无域名环境下的接入。
 
 ## 🌟 项目亮点
 
-*   **内存压榨**：深度优化 Xray 配置，关闭所有非必要日志，实测在 64MB RAM 环境下长期稳定运行。
+*   **内存压榨**：深度优化 Xray 配置，关闭所有非必要日志
     *   自动生成适配优选订阅器的链接，直接获取高速体验。
 
 ## 🚀 快速开始
@@ -13,13 +13,6 @@
 
 ```bash
 bash <(curl -fsSL https://github.com/clerzg/quick-argo-xray/raw/refs/heads/main/quick-argo-xray.sh)
-```
-
-
-Docker Alpine 启动命令
-
-```bash
-sh -c 'apk add --no-cache bash curl openssl && curl -fSSL https://github.com/clerzg/quick-argo-xray/raw/refs/heads/main/quick-argo-xray.sh -o setup.sh && chmod +x setup.sh && ./setup.sh && tail -f /dev/null'
 ```
 
 ## 📂 目录结构
