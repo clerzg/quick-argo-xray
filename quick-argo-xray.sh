@@ -43,7 +43,7 @@ while true; do
         rm -rf argo.log
         echo -e "\n\n🚀 部署成功！"
 
-        SUB_URL="https://sub.xinyitang.dpdns.org/sub?uuid=$uuid&encryption=none&security=tls&sni=$argo&fp=chrome&insecure=0&allowInsecure=0&type=ws&host=$argo&path=%2F$urlpath"
+        SUB_URL="https://cm.soso.edu.kg/sub?uuid=$uuid&encryption=none&security=tls&sni=$argo&fp=chrome&insecure=0&allowInsecure=0&type=ws&host=$argo&path=%2F$urlpath"
 
         echo -e "----------------------------------------------------------------"
         echo -e "🛠️ 优选订阅链接:"
